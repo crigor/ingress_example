@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  rules:
+  - host: 54.197.168.182.xip.io
+    http:
+      paths:
+      - backend:
+          serviceName: rubyapp-nodeport
+          servicePort: 8000
+  - host: rubyapp-nodeport.dev
+    http:
+      paths:
+      - backend:
+          serviceName: rubyapp-nodeport
+          servicePort: 8000
+  - host: website1.dev
+    http:
+      paths:
+      - backend:
+          serviceName: website1
+          servicePort: 80
+  - host: website2.dev
+    http:
+      paths:
+      - backend:
+          serviceName: website1
+          servicePort: 80
+  - host: website3.dev
+    http:
+      paths:
+      - backend:
+          serviceName: website3
+          servicePort: 80
+
